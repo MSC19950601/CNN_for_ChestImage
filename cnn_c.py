@@ -82,7 +82,7 @@ def validate(val_loader, model, criterion):
 
         if i % 100 == 0:
             #print 'Test: [{0}/{1}]\t Loss {loss:.4f}\t'.format(i, len(valid_loader), loss=loss)
-            print i, len(val_loader), loss
+            print(i, len(val_loader), loss)
 
     epoch_loss = running_loss / ( num_train * valid_size )
     epoch_acc = running_corrects / ( num_train * valid_size * 15 )
@@ -91,15 +91,15 @@ def validate(val_loader, model, criterion):
     	best_acc = epoch_acc
     	best_model = deepcopy(model)
 
-    print "current acc: " + str(epoch_acc)
+    print("current acc: " + str(epoch_acc))
 
 
 
 def train(train_loader, cnn, lossfunc, epoch):
 	f = open('out_comparison '+str(epoch) +'.txt', 'w')
-	print 'training......'
+	print('training......')
 	cnn.train()
-	print sys.getsizeof(enumerate(train_loader))
+	print(sys.getsizeof(enumerate(train_loader)))
 	for step, (x,y) in enumerate(train_loader):
 		# print step
 		x, y = x.cuda(async=True), y.cuda(async=True)
@@ -217,7 +217,7 @@ class CNN(nn.Module):
 
 cnn = CNN().cuda()
 cnn.apply(weights_init)
-print cnn
+print(cnn)
 optimizer = torch.optim.Adam(cnn.parameters(), lr=learning_rate)
 
 lossfunc = nn.BCELoss()
@@ -240,7 +240,7 @@ for epo in range(EPOCH):
 torch.save(best_model, 'net1.pkl')
 torch.save(best_model.state_dict(), 'net1_params.pkl')
 
-print "accuracy: " + str(best_acc)
+print("accuracy: " + str(best_acc))
 
 
 

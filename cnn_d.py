@@ -11,9 +11,9 @@ from collections import defaultdict
 
 transformations = transforms.Compose([transforms.Scale(256),transforms.ToTensor()])
 
-print "loading data..."
+print("loading data...")
 dset_train = ChestImage(FOLDER_DATASET,transformations)
-print "done."
+print("done.")
 
 
 labelSize = len(dset_train.yt)
@@ -42,13 +42,13 @@ EPOCH = 3
 
 num_data = len(dset_train)
 #num_data = 1000
-print num_data
+print(num_data)
 num_train = num_data - 5000
 indices = list(range(num_train))
-print 'num_train: ' + str(num_train)
+print('num_train: ' + str(num_train))
 
 split = int(np.floor(valid_size * num_train))
-print 'split: ' + str(split)
+print('split: ' + str(split))
 test_idx = list(range(num_train, num_data))
 if shuffle == True:
 	np.random.seed(random_seed)
@@ -56,7 +56,7 @@ if shuffle == True:
 
 train_idx, valid_idx = indices[split:], indices[:split]
 
-print 'length of train_idx: ' + str(len(train_idx))
+print('length of train_idx: ' + str(len(train_idx)))
 
 train_sampler = SubsetRandomSampler(train_idx)
 valid_sampler = SubsetRandomSampler(valid_idx)
@@ -74,14 +74,14 @@ test_loader = DataLoader(dset_train,
 	batch_size=batch_size, sampler=test_sampler,
 	num_workers=num_workers, pin_memory=pin_memory)
 
-print 'length:\ntrain_loader: ' + str(len(train_loader))
-print 'valid_loader: ' + str(len(valid_loader))
-print 'test_loader: ' + str(len(test_loader))
+print('length:\ntrain_loader: ' + str(len(train_loader)))
+print('valid_loader: ' + str(len(valid_loader)))
+print('test_loader: ' + str(len(test_loader)))
 
 #test_loader = Data
 
 def test(loader, model, criterion, mode='test'):
-	print "size of test loader: " + str(len(loader))
+	print("size of test loader: " + str(len(loader)))
 	if mode == 'test':
 		out_file = open('test_loss_recall.txt', 'w')
 	else:
@@ -145,7 +145,7 @@ def test(loader, model, criterion, mode='test'):
 
 		if i % 100 == 0:
 			#print 'Test: [{0}/{1}]\t Loss {loss:.4f}\t'.format(i, len(valid_loader), loss=loss)
-			print 'loss:', i, len(loader), loss
+			print('loss:', i, len(loader), loss)
 			write_string = str(loss.data[0]) + '\n'
 			out_file.write(write_string)
 
@@ -154,12 +154,12 @@ def test(loader, model, criterion, mode='test'):
 	#recall = running_true_positive / num_of_positive
 	out_file.write('recall\n')
 	for i, each in enumerate(recall_record):
-		print 'recall for threshold of value {}: {}'.format(threshold_list[i], each)
+		print('recall for threshold of value {}: {}'.format(threshold_list[i], each))
 		out_file.write(str(i) + ', ' + str(each)+ '\n')
 	out_file.write('precision\n')
 
 	for i, each in enumerate(precision_record):
-		print 'precision for threshold of value {}: {}'.format(threshold_list[i], each)
+		print('precision for threshold of value {}: {}'.format(threshold_list[i], each))
 		out_file.write(str(i) + ', ' + str(each)+ '\n')
 
 
@@ -168,7 +168,7 @@ def test(loader, model, criterion, mode='test'):
 	epoch_recall_idx = recall_record.index(epoch_recall)
 
 	#print "current acc: " + str(epoch_acc)
-	print 'current recall: ' + str(epoch_recall) + ' with threshold ' + str(threshold_list[epoch_recall_idx])
+	print('current recall: ' + str(epoch_recall) + ' with threshold ' + str(threshold_list[epoch_recall_idx]))
 	out_file.close()
 
 def validate(val_loader, model, criterion, best_acc, best_model, epoch):
@@ -231,7 +231,7 @@ def validate(val_loader, model, criterion, best_acc, best_model, epoch):
 
 		if i % 100 == 0:
 			#print 'Test: [{0}/{1}]\t Loss {loss:.4f}\t'.format(i, len(valid_loader), loss=loss)
-			print 'loss:', i, len(val_loader), loss
+			print('loss:', i, len(val_loader), loss)
 			write_string = str(loss.data[0]) + '\n'
 			out_file.write(write_string)
 
@@ -240,11 +240,11 @@ def validate(val_loader, model, criterion, best_acc, best_model, epoch):
 	#recall = running_true_positive / num_of_positive
 
 	for i, each in enumerate(recall_record):
-		print 'recall for threshold of value {}: {}'.format(threshold_list[i], each)
+		print('recall for threshold of value {}: {}'.format(threshold_list[i], each))
 		out_file.write(str(i) + ', ' + str(each)+ '\n')
 
 	for i, each in enumerate(precision_record):
-		print 'precision for threshold of value {}: {}'.format(threshold_list[i], each)
+		print('precision for threshold of value {}: {}'.format(threshold_list[i], each))
 		out_file.write(str(i) + ', ' + str(each)+ '\n')
 
 
@@ -257,7 +257,7 @@ def validate(val_loader, model, criterion, best_acc, best_model, epoch):
 
 
 	#print "current acc: " + str(epoch_acc)
-	print 'current recall: ' + str(epoch_recall) + ' with threshold ' + str(threshold_list[epoch_recall_idx])
+	print('current recall: ' + str(epoch_recall) + ' with threshold ' + str(threshold_list[epoch_recall_idx]))
 	out_file.close()
 
 	return best_acc, best_model
@@ -267,9 +267,9 @@ def train(train_loader, cnn, lossfunc, epoch):
 	# f = open('out_comparison '+str(epoch) +'.txt', 'w')
 	out_file = open('train_loss_'+str(epoch)+'.txt', 'w')
 
-	print 'training......'
+	print('training......')
 	cnn.train()
-	print 'len of train_loader: ' + str(len(train_loader))
+	print('len of train_loader: ' + str(len(train_loader)))
 
 	running_corrects = 0.0
 	running_true_positive = 0.0
@@ -344,7 +344,7 @@ def count_true_negative(output, target):
 def count_category_pos(output, target, rs_out, rs_tar):
 	for i in range(len(output)):
 		for j in range(len(output[i])):
-			print 'the {}th element in the {}th sample: output[{}], target[{}]'.format(j, i, output[i][j], target[i][j])
+			print('the {}th element in the {}th sample: output[{}], target[{}]'.format(j, i, output[i][j], target[i][j]))
 			if output[i][j] == target[i][j] == 1.0:
 				rs_out[j] += 1.0
 			if target[i][j] == 1.0:
@@ -439,7 +439,7 @@ class CNN(nn.Module):
 
 cnn = CNN().cuda()
 cnn.apply(weights_init)
-print cnn
+print(cnn)
 optimizer = torch.optim.Adam(cnn.parameters(), learning_rate)
 
 lossfunc = nn.BCELoss()

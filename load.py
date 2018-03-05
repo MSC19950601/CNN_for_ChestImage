@@ -28,8 +28,8 @@ Disease_map = {'Atelectasis' : 0, 'Cardiomegaly': 1, 'Effusion':2, 'Infiltration
 
 
 	
-FOLDER_DATASET = "/datasets/ChestXray-NIHCC/"
-image_path = "/datasets/ChestXray-NIHCC/images/"
+FOLDER_DATASET = "/home/kururu/Github/CheXNet/ChestX-ray14"
+image_path = "/home/kururu/Github/CheXNet/ChestX-ray14/images"
 class ChestImage(Dataset):
 	xt = []
 	yt = []
@@ -42,7 +42,7 @@ class ChestImage(Dataset):
 		lb = reader['Finding Labels']
 		IDX = self.balanceData(imgs,lb)
 		self.xt = pd.Series([imgs[i] for i in IDX])
-		print type(imgs)
+		print(type(imgs))
 		new_lb = pd.Series(np.array([lb[i] for i in IDX]))
 		self.transform = transform
 		
