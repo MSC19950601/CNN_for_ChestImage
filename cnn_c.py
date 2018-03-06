@@ -19,6 +19,7 @@ batch_size = 20
 num_workers = 1
 pin_memory = True
 show_sample = True
+best_acc = 0.0
 learning_rate = 0.0005
 
 EPOCH = 5
