@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81d938ce-04fb-40cf-9a50-fa5e17f6ad2c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/cnn_c.py" afterPath="$PROJECT_DIR$/cnn_c.py" />
-      <change beforePath="$PROJECT_DIR$/cnn_d.py" afterPath="$PROJECT_DIR$/cnn_d.py" />
-    </list>
+    <list default="true" id="81d938ce-04fb-40cf-9a50-fa5e17f6ad2c" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
