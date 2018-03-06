@@ -38,7 +38,7 @@ pred_threshold = torch.cuda.FloatTensor([
 	] for i in range(batch_size)]
 	)
 
-EPOCH = 3
+EPOCH = 10
 
 num_data = len(dset_train)
 #num_data = 1000
