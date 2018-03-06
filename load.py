@@ -25,11 +25,14 @@ Disease_map = {'Atelectasis' : 0, 'Cardiomegaly': 1, 'Effusion':2, 'Infiltration
 
 '''
 
+# for linux
+# FOLDER_DATASET = "/home/kururu/Github/CheXNet/ChestX-ray14/"
+# image_path = "/home/kururu/Github/CheXNet/ChestX-ray14/images/"
 
+# for windows
+FOLDER_DATASET = "E:/CheXNet/ChestX-ray14/"
+image_path = "E:/CheXNet/ChestX-ray14/images/"
 
-	
-FOLDER_DATASET = "/home/kururu/Github/CheXNet/ChestX-ray14"
-image_path = "/home/kururu/Github/CheXNet/ChestX-ray14/images"
 class ChestImage(Dataset):
 	xt = []
 	yt = []

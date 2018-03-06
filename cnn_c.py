@@ -6,6 +6,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import torch.nn.init as init
 from copy import deepcopy
+from torch.utils.data.sampler import SubsetRandomSampler
 
 transformations = transforms.Compose([transforms.Scale(256),transforms.ToTensor()])
 dset_train = ChestImage(FOLDER_DATASET,transformations)
@@ -59,7 +60,7 @@ def validate(val_loader, model, criterion):
     running_corrects = 0
     # end = time.time()
     for i, (input, target) in enumerate(val_loader):
-    	input = input.cuda(async=True)
+        input = input.cuda(async=True)
         target = target.cuda(async=True)
         input_var = Variable(input, volatile=True)
         target_var = Variable(target, volatile=True)
