@@ -38,7 +38,7 @@ pred_threshold = torch.cuda.FloatTensor([
 	] for i in range(batch_size)]
 	)
 
-EPOCH = 10
+EPOCH = 20
 
 num_data = len(dset_train)
 #num_data = 1000
@@ -433,8 +433,6 @@ class CNN(nn.Module):
 		output = self.out(x)
 		output = F.sigmoid(output)
 		return output
-
-
 
 
 cnn = CNN().cuda()
